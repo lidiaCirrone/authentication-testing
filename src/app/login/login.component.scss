@@ -29,15 +29,13 @@ form {
   }
 }
 
-.col {
+[class^="col"] {
   display: flex;
-  flex: 1;
   flex-direction: column;
 }
 
-.col-2 {
-  display: flex;
-  flex-direction: column;
+.col {
+  flex: 1;
 }
 
 button {
@@ -48,7 +46,7 @@ button {
   .container {
     height: 100vh;
   }
-  
+
   form {
     max-width: 400px;
   }
