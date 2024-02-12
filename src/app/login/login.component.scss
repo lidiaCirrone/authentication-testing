@@ -21,3 +21,18 @@
 button {
   margin-top: 2em;
 }
+
+.actions {
+  text-align: right;
+
+  & span {
+    font-size: 0.8em;
+  }
+}
+
+.msg {
+  margin-top: 1em;
+  font-size: 0.8em;
+  background-color: rgba(255, 0, 0, 0.1);
+  padding: 0.3em;
+}

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {
   Auth,
   createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
   updateProfile,
 } from '@angular/fire/auth';
 import { NgForm } from '@angular/forms';
@@ -14,6 +15,8 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
   loading: boolean = false;
+  action: 'login' | 'signup' = 'login';
+  error: string = '';
 
   constructor(private auth: Auth, private router: Router) {}
 
@@ -21,22 +24,37 @@ export class LoginComponent implements OnInit {
 
   async onSubmit(form: NgForm) {
     this.loading = true;
+    this.error = '';
     const { email, password, firstName, lastName } = form.value;
+    let response;
     try {
-      const response = await createUserWithEmailAndPassword(
-        this.auth,
-        email,
-        password
-      );
-      await updateProfile(response.user, {
-        displayName: `${firstName} ${lastName}`,
-      });
-      form.reset();
+      if (this.isSignUp) {
+        response = await createUserWithEmailAndPassword(
+          this.auth,
+          email,
+          password
+        );
+        await updateProfile(response.user, {
+          displayName: `${firstName} ${lastName}`,
+        });
+        form.reset();
+      } else {
+        response = await signInWithEmailAndPassword(this.auth, email, password);
+      }
       const uid = response.user.uid;
       this.router.navigate([`/profile/${uid}`]);
     } catch (error: any) {
       console.log(error.message);
+      this.error = error.message;
     }
     this.loading = false;
+  }
+
+  get isLogin(): boolean {
+    return this.action === 'login';
+  }
+
+  get isSignUp(): boolean {
+    return this.action === 'signup';
   }
 }

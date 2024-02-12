@@ -4,7 +4,7 @@
   class="main"
   [class.loading]="loading"
 >
-  <div class="flex row">
+  <div class="flex row" *ngIf="isSignUp">
     <div class="col flex-1">
       <label>First Name</label>
       <input type="text" name="firstName" placeholder="First Name" ngModel />
@@ -22,5 +22,18 @@
     <label>Password</label>
     <input type="password" name="password" placeholder="Password" ngModel />
   </div>
-  <button type="submit">Sign Up</button>
+  <div class="actions">
+    <button type="submit">{{ action | titlecase }}</button>
+    <span *ngIf="isLogin">
+      or
+      <a href="#" (click)="action = 'signup'">sign up</a>
+    </span>
+    <span *ngIf="isSignUp">
+      or
+      <a href="#" (click)="action = 'login'">log in</a>
+    </span>
+  </div>
 </form>
+<div class="msg" *ngIf="error">
+  {{ error }}
+</div>
