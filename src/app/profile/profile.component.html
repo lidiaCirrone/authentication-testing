@@ -1,5 +1,60 @@
-<main *ngIf="user$ | async as user">
-  <p>Name : {{ user.name }}</p>
-  <p>Email : {{ user.email }}</p>
-  <p>ID : {{ user.uid }}</p>
+<form
+  #profileForm="ngForm"
+  (submit)="onSubmit(profileForm)"
+  class="main"
+  [class.loading]="loading"
+  *ngIf="user$ | async as user"
+>
+  <div class="flex row">
+    <div class="col flex-1">
+      <label>Name</label>
+      <input type="text" name="name" [ngModel]="user.name" />
+    </div>
+    <div class="col flex-1">
+      <label>Email</label>
+      <input type="email" name="email" [ngModel]="user.email" disabled />
+    </div>
+  </div>
+  <div class="col flex-1">
+    <label>Address</label>
+    <input type="address" name="address" [ngModel]="user.address" />
+  </div>
+  <div class="col flex-1">
+    <label>City</label>
+    <input type="city" name="city" [ngModel]="user.city" />
+  </div>
+  <div class="col flex-1">
+    <label>State</label>
+    <input type="state" name="state" [ngModel]="user.state" />
+  </div>
+  <div class="col flex-1">
+    <label>Zip</label>
+    <input type="zip" name="zip" [ngModel]="user.zip" />
+  </div>
+  <div class="col flex-1">
+    <label>Phone</label>
+    <input type="phone" name="phone" [ngModel]="user.phone" />
+  </div>
+  <div class="col flex-1">
+    <label>Specialty</label>
+    <select class="specialty" name="specialty" [ngModel]="user.specialty">
+      <option value="field agent">Field Agent</option>
+      <option value="covert operations">Covert Operations</option>
+      <option value="intelligence officer">Intelligence Officer</option>
+    </select>
+  </div>
+  <div class="col flex-1">
+    <label>Ip</label>
+    <input type="ip" name="ip" [ngModel]="user.ip" />
+  </div>
+  <div class="actions">
+    <button type="submit">Submit</button>
+  </div>
+</form>
+<div class="msg" *ngIf="error">
+  {{ error }}
+</div>
+
+<main *ngIf="!(user$ | async)">
+  <p>Something went wrong :(</p>
 </main>

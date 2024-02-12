@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Auth, signOut } from '@angular/fire/auth';
 import { Router } from '@angular/router';
 import { UserProfile } from './user-profile.model';
-import { Firestore, doc, setDoc } from '@angular/fire/firestore';
+import { Firestore, doc, setDoc, updateDoc } from '@angular/fire/firestore';
 
 @Injectable({
   providedIn: 'root',
@@ -14,8 +14,8 @@ export class AuthService {
     private afStore: Firestore
   ) {}
 
-  logout(): void {
-    signOut(this.afAuth);
+  async logout(): Promise<void> {
+    await signOut(this.afAuth);
     this.router.navigate(['']);
   }
 
@@ -23,7 +23,7 @@ export class AuthService {
     return !!this.afAuth.currentUser;
   }
 
-  createUserDocument() {
+  createUserDocument(): void {
     // get the current user
     const user = this.afAuth.currentUser;
 
@@ -40,9 +40,14 @@ export class AuthService {
       specialty: '',
       ip: '',
     };
-    
+
     // write to Firebase
     const userDoc = doc(this.afStore, `users/${user?.uid}`);
     setDoc(userDoc, userProfile);
+  }
+
+  updateUserDocument(userProfile: any): Promise<void> {
+    const userDoc = doc(this.afStore, `users/${userProfile?.uid}`);
+    return updateDoc(userDoc, userProfile);
   }
 }
