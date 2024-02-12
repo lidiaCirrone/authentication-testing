@@ -18,7 +18,7 @@ export class LoginComponent implements OnInit {
   action: 'login' | 'signup' = 'login';
   error: string = '';
 
-  constructor(private auth: Auth, private router: Router) {}
+  constructor(private afAuth: Auth, private router: Router) {}
 
   ngOnInit(): void {}
 
@@ -30,7 +30,7 @@ export class LoginComponent implements OnInit {
     try {
       if (this.isSignUp) {
         response = await createUserWithEmailAndPassword(
-          this.auth,
+          this.afAuth,
           email,
           password
         );
@@ -39,7 +39,7 @@ export class LoginComponent implements OnInit {
         });
         form.reset();
       } else {
-        response = await signInWithEmailAndPassword(this.auth, email, password);
+        response = await signInWithEmailAndPassword(this.afAuth, email, password);
       }
       const uid = response.user.uid;
       this.router.navigate([`/profile/${uid}`]);

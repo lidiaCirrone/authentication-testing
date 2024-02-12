@@ -6,14 +6,14 @@ import { Router } from '@angular/router';
   providedIn: 'root',
 })
 export class AuthService {
-  constructor(private router: Router, private auth: Auth) {}
+  constructor(private router: Router, private afAuth: Auth) {}
 
   logout(): void {
-    signOut(this.auth);
+    signOut(this.afAuth);
     this.router.navigate(['']);
   }
 
   isLoggedIn(): boolean {
-   return !!this.auth.currentUser;
+   return !!this.afAuth.currentUser;
   }
 }

@@ -8,7 +8,7 @@ import { Auth, user } from '@angular/fire/auth';
 })
 export class ProfileComponent {
 
-   constructor(public auth: Auth){}
-   user$ = user(this.auth);
+   constructor(public afAuth: Auth){}
+   user$ = user(this.afAuth);
 
 }
