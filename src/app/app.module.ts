@@ -12,6 +12,7 @@ import { LoginComponent } from './login/login.component';
 import { ProfileComponent } from './profile/profile.component';
 import { AuthGuard } from '@angular/fire/auth-guard';
 import { FirestoreModule } from '@angular/fire/firestore';
+import { getStorage, provideStorage } from '@angular/fire/storage';
 
 @NgModule({
   declarations: [AppComponent, LoginComponent, ProfileComponent],
@@ -22,6 +23,7 @@ import { FirestoreModule } from '@angular/fire/firestore';
     FormsModule,
     provideAuth(() => getAuth()),
     provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideStorage(() => getStorage()),
   ],
   providers: [AuthGuard],
   bootstrap: [AppComponent],
