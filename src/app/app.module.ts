@@ -11,12 +11,14 @@ import { FormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import { ProfileComponent } from './profile/profile.component';
 import { AuthGuard } from '@angular/fire/auth-guard';
+import { FirestoreModule } from '@angular/fire/firestore';
 
 @NgModule({
   declarations: [AppComponent, LoginComponent, ProfileComponent],
   imports: [
     AppRoutingModule,
     BrowserModule,
+    FirestoreModule,
     FormsModule,
     provideAuth(() => getAuth()),
     provideFirebaseApp(() => initializeApp(environment.firebase)),
