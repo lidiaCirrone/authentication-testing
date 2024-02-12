@@ -5,6 +5,7 @@ import {
   updateProfile,
 } from '@angular/fire/auth';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +15,7 @@ import { NgForm } from '@angular/forms';
 export class LoginComponent implements OnInit {
   loading: boolean = false;
 
-  constructor(private auth: Auth) {}
+  constructor(private auth: Auth, private router: Router) {}
 
   ngOnInit(): void {}
 
@@ -31,6 +32,8 @@ export class LoginComponent implements OnInit {
         displayName: `${firstName} ${lastName}`,
       });
       form.reset();
+      const uid = response.user.uid;
+      this.router.navigate([`/profile/${uid}`]);
     } catch (error: any) {
       console.log(error.message);
     }
