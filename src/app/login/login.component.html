@@ -1,20 +1,20 @@
 <div class="container">
-  <form #form="ngForm" (submit)="onSubmit(form)" [class.loading]="loading">
-    <div class="col-2">
-      <div class="col">
+  <form #form="ngForm" (submit)="onSubmit(form)" class="main" [class.loading]="loading">
+    <div class="flex row">
+      <div class="col flex-1">
         <label>First Name</label>
         <input type="text" name="firstName" placeholder="First Name" ngModel />
       </div>
-      <div class="col">
+      <div class="col flex-1">
         <label>Last Name</label>
         <input type="text" name="lastName" placeholder="Last Name" ngModel />
       </div>
     </div>
-    <div class="col">
+    <div class="col flex-1">
       <label>Email</label>
       <input type="email" name="email" placeholder="Email" ngModel />
     </div>
-    <div class="col">
+    <div class="col flex-1">
       <label>Password</label>
       <input type="password" name="password" placeholder="Password" ngModel />
     </div>

@@ -1,27 +1,4 @@
-// .login-container {
-//     display: flex;
-//     align-items: center;
-//     justify-content: center;
-//   }
-
-//   .login-card {
-//     width: 450px;
-//   }
-
-//   .login.button {
-//     float: right;
-//   }
-
-.container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-form {
-  width: 90vw;
-  display: flex;
-  flex-direction: column;
+.main {
   gap: 0.5em 0;
 
   & > div {
@@ -29,29 +6,18 @@ form {
   }
 }
 
-[class^="col"] {
+[class*="flex"] {
   display: flex;
-  flex-direction: column;
 }
 
 .col {
+  flex-direction: column;
+}
+
+.flex-1 {
   flex: 1;
 }
 
 button {
   margin-top: 2em;
-}
-
-@media only screen and (min-width: 601px) {
-  .container {
-    height: 100vh;
-  }
-
-  form {
-    max-width: 400px;
-  }
-
-  .col-2 {
-    flex-direction: row;
-  }
 }
