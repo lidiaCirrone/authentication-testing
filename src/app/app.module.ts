@@ -10,6 +10,7 @@ import { getAuth, provideAuth } from '@angular/fire/auth';
 import { FormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import { ProfileComponent } from './profile/profile.component';
+import { AuthGuard } from '@angular/fire/auth-guard';
 
 @NgModule({
   declarations: [AppComponent, LoginComponent, ProfileComponent],
@@ -20,7 +21,7 @@ import { ProfileComponent } from './profile/profile.component';
     provideAuth(() => getAuth()),
     provideFirebaseApp(() => initializeApp(environment.firebase)),
   ],
-  providers: [],
+  providers: [AuthGuard],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
