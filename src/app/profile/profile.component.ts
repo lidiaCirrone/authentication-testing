@@ -37,6 +37,10 @@ export class ProfileComponent implements OnInit {
     this.user$ = docData(this.userDoc);
   }
 
+  fileChange(event: any) {
+    console.log(event);
+  }
+
   async onSubmit(ngForm: NgForm) {
     this.loading = true;
     const { email, name, address, city, state, zip, ip, phone, specialty } =

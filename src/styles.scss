@@ -7,6 +7,7 @@ $tablet: 601px;
   box-sizing: border-box;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  --tablet: $tablet;
 }
 
 body {
@@ -30,12 +31,21 @@ button {
   display: flex;
 }
 
-.col {
+.col,
+.row {
   flex-direction: column;
 }
 
 .flex-1 {
   flex: 1;
+}
+
+.mt-1 {
+  margin-top: 1em;
+}
+
+.hide {
+  display: none;
 }
 
 .msg {
@@ -73,10 +83,16 @@ form {
   &.main {
     gap: 0.5em 0;
 
-    & > div {
+    & > div,
+    .gap {
       gap: 0 1em;
     }
   }
+}
+
+div:has(> img) {
+  align-items: center;
+  justify-content: center;
 }
 
 @media only screen and (min-width: $tablet) {
@@ -85,7 +101,7 @@ form {
   }
 
   .main {
-    max-width: 400px;
+    max-width: 500px;
   }
 
   .row {
