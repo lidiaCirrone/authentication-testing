@@ -26,6 +26,25 @@ button {
   cursor: pointer;
 }
 
+[class*="flex"] {
+  display: flex;
+}
+
+.col {
+  flex-direction: column;
+}
+
+.flex-1 {
+  flex: 1;
+}
+
+.msg {
+  margin-top: 1em;
+  font-size: 0.8em;
+  background-color: rgba(255, 0, 0, 0.1);
+  padding: 0.3em;
+}
+
 .container {
   display: flex;
   align-items: center;
@@ -37,6 +56,27 @@ button {
   width: 90vw;
   display: flex;
   flex-direction: column;
+}
+
+form {
+  .actions {
+    text-align: right;
+
+    & button {
+      margin-top: 2em;
+    }
+    & span {
+      font-size: 0.8em;
+    }
+  }
+
+  &.main {
+    gap: 0.5em 0;
+
+    & > div {
+      gap: 0 1em;
+    }
+  }
 }
 
 @media only screen and (min-width: $tablet) {
