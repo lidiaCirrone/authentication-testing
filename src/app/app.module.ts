@@ -13,9 +13,10 @@ import { ProfileComponent } from './profile/profile.component';
 import { AuthGuard } from '@angular/fire/auth-guard';
 import { FirestoreModule } from '@angular/fire/firestore';
 import { getStorage, provideStorage } from '@angular/fire/storage';
+import { UsersComponent } from './users/users.component';
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent, ProfileComponent],
+  declarations: [AppComponent, LoginComponent, ProfileComponent, UsersComponent],
   imports: [
     AppRoutingModule,
     BrowserModule,
