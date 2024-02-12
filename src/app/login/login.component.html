@@ -1,23 +1,26 @@
-<div class="container">
-  <form #form="ngForm" (submit)="onSubmit(form)" class="main" [class.loading]="loading">
-    <div class="flex row">
-      <div class="col flex-1">
-        <label>First Name</label>
-        <input type="text" name="firstName" placeholder="First Name" ngModel />
-      </div>
-      <div class="col flex-1">
-        <label>Last Name</label>
-        <input type="text" name="lastName" placeholder="Last Name" ngModel />
-      </div>
+<form
+  #form="ngForm"
+  (submit)="onSubmit(form)"
+  class="main"
+  [class.loading]="loading"
+>
+  <div class="flex row">
+    <div class="col flex-1">
+      <label>First Name</label>
+      <input type="text" name="firstName" placeholder="First Name" ngModel />
     </div>
     <div class="col flex-1">
-      <label>Email</label>
-      <input type="email" name="email" placeholder="Email" ngModel />
+      <label>Last Name</label>
+      <input type="text" name="lastName" placeholder="Last Name" ngModel />
     </div>
-    <div class="col flex-1">
-      <label>Password</label>
-      <input type="password" name="password" placeholder="Password" ngModel />
-    </div>
-    <button type="submit">Sign Up</button>
-  </form>
-</div>
+  </div>
+  <div class="col flex-1">
+    <label>Email</label>
+    <input type="email" name="email" placeholder="Email" ngModel />
+  </div>
+  <div class="col flex-1">
+    <label>Password</label>
+    <input type="password" name="password" placeholder="Password" ngModel />
+  </div>
+  <button type="submit">Sign Up</button>
+</form>
