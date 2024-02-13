@@ -52,7 +52,7 @@ export class LoginComponent implements OnInit {
         );
       }
       const uid = response.user.uid;
-      this.router.navigate([`/profile/${uid}`]);
+      this.auth.routeOnlogin();
     } catch (error: any) {
       console.log(error.message);
       this.error = error.message;

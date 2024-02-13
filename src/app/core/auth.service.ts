@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Auth, signOut } from '@angular/fire/auth';
+import { Auth, getIdTokenResult, signOut } from '@angular/fire/auth';
 import { Router } from '@angular/router';
 import { UserProfile } from './user-profile.model';
 import { Firestore, doc, setDoc, updateDoc } from '@angular/fire/firestore';
@@ -49,5 +49,15 @@ export class AuthService {
   updateUserDocument(userProfile: any): Promise<void> {
     const userDoc = doc(this.afStore, `users/${userProfile?.uid}`);
     return updateDoc(userDoc, userProfile);
+  }
+
+  async routeOnlogin() {
+    const user = this.afAuth.currentUser;
+    if (user) {
+      const token = await getIdTokenResult(user);
+      this.router.navigate(
+        token.claims['admin'] ? ['/users'] : [`/profile/${user.uid}`]
+      );
+    }
   }
 }
