@@ -1,0 +1,25 @@
+th,
+.row {
+  gap: 0 0.2em;
+}
+
+.th {
+  display: flex;
+  font-weight: 500;
+}
+
+.row {
+  margin: 0.1em 0;
+}
+
+.cell {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  background: #eeeeee;
+  padding: 0.3em;
+}
+
+.th .cell {
+  background-color: #d6d6d6;
+}
