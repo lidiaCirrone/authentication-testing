@@ -19,7 +19,6 @@ const redirectLoggedInToProfileOrUsers = () =>
   pipe(
     customClaims,
     map((claims: any) => {
-      console.debug("claims: ", claims);
       // if no claims, then there's no authenticated user
       // so allow the route ['']
       if (claims.length === 0) return true;
