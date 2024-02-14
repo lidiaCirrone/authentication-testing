@@ -6,8 +6,16 @@ import { AuthGuard, customClaims } from '@angular/fire/auth-guard';
 import { map, pipe } from 'rxjs';
 import { UsersComponent } from './users/users.component';
 
-const onlyAllowSelf = (next: any) =>
-  map((user) => (!!user && next.params.id == (user as any).uid) || ['']);
+const allowOnlySelfOrAdmin = (next: any) =>
+  pipe(
+    customClaims,
+    map((claims: any) => {
+      if (claims.length == 0) {
+        return [''];
+      }
+      return next.params.id === claims.user_id || claims.admin;
+    })
+  );
 
 const adminOnly = () =>
   pipe(
@@ -42,7 +50,7 @@ const routes: Routes = [
     path: 'profile/:id',
     component: ProfileComponent,
     canActivate: [AuthGuard],
-    data: { authGuardPipe: onlyAllowSelf },
+    data: { authGuardPipe: allowOnlySelfOrAdmin },
   },
   {
     path: 'users',
