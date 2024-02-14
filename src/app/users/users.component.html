@@ -7,9 +7,7 @@
     <div class="cell">IP Address</div>
   </div>
   <div *ngFor="let user of users | async" class="flex row">
-    <div class="cell">
-      <a [routerLink]="['/profile', user.uid]">{{ user.name }}</a>
-    </div>
+    <div class="cell">{{ user.name }}</div>
     <div class="cell">{{ user.specialty }}</div>
     <div class="cell">
       {{ user.address }} {{ user.city }} {{ user.state }}, {{ user.zip }}

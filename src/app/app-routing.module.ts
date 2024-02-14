@@ -15,17 +15,6 @@ const adminOnly = () =>
     map((claims: any) => claims.admin === true || [''])
   );
 
-const allowOnlySelfOrAdmin = (next: any) =>
-  pipe(
-    customClaims,
-    map((claims: any) => {
-      if (claims.length == 0) {
-        return [''];
-      }
-      return next.params.id === claims.user_id || claims.admin;
-    })
-  );
-
 const redirectLoggedInToProfileOrUsers = () =>
   pipe(
     customClaims,
@@ -53,7 +42,7 @@ const routes: Routes = [
     path: 'profile/:id',
     component: ProfileComponent,
     canActivate: [AuthGuard],
-    data: { authGuardPipe: allowOnlySelfOrAdmin },
+    data: { authGuardPipe: onlyAllowSelf },
   },
   {
     path: 'users',
